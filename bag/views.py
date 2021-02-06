@@ -20,7 +20,7 @@ def add_to_bag(request, item_id):
     redirect_url = request.POST.get('redirect_url')
     size = None
     if 'product_size' in request.POST:
-        size = request.POST['product.size']
+        size = request.POST['product_size']
     bag = request.session.get('bag', {})
 
     if size:
@@ -102,5 +102,5 @@ def remove_from_bag(request, item_id):
         return HttpResponse(status=200)
 
     except Exception as e:
-        messages.error(request, f'Error removing item: (e)')
+        messages.error(request, f'Error removing item: {e}')
         return HttpResponse(status=500)
